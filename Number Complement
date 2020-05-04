@@ -1,0 +1,50 @@
+**Problem Statement**
+**Given a positive integer, output its complement number. The complement strategy is to flip the bits of its binary representation.**
+
+ 
+
+**Example 1:**
+
+Input: 5
+Output: 2
+Explanation: The binary representation of 5 is 101 (no leading zero bits), and its complement is 010. So you need to output 2.
+ 
+
+**Example 2:**
+
+Input: 1
+Output: 0
+Explanation: The binary representation of 1 is 1 (no leading zero bits), and its complement is 0. So you need to output 0.
+ 
+
+Note:
+
+The given integer is guaranteed to fit within the range of a 32-bit signed integer.
+You could assume no leading zero bit in the integer’s binary representation.
+**Soln**
+`def findComplement(self, num: int) -> int:
+        def decimalToBinary(N):
+            res = 0
+            while N>=1:
+                temp = math.floor(math.log2(N))
+                res+=10**temp     
+                N = N-2**temp
+            return res
+        def binaryToDecimal(N):
+            res = 0
+            count = 0
+            lst = list(str(N))
+            while lst:
+                temp = int(lst.pop())
+                if temp==1:
+                    res+=2**count
+                count+=1
+            return res
+        def complement(num):
+            lst=[str(int(i) ^ 1) for i in str(num)]
+            p="".join(lst)
+            return p.lstrip('0')
+        p=decimalToBinary(num)
+        q=complement(p)
+        result=binaryToDecimal(q)
+        return result`

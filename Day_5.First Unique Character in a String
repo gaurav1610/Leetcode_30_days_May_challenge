@@ -1,0 +1,31 @@
+Problem statement
+Given a string, find the first non-repeating character in it and return it's index. If it doesn't exist, return -1.
+
+Examples:
+
+s = "leetcode"
+return 0.
+
+s = "loveleetcode",
+return 2.
+Note: You may assume the string contain only lowercase letters.
+
+soln:
+def firstUniqChar(self, s: str) -> int:
+        index=-1
+        k=0
+        if len(s)==0:
+            return -1
+        else:
+            freq={}
+            for i in s:
+                if i in freq:
+                    freq[i]+=1
+                else:
+                    freq[i]=1
+            for i in s:
+                if freq[i]==1:
+                    index=k
+                    break
+                k+=1
+            return index
